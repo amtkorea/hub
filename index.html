@@ -131,13 +131,16 @@
   /* === 핸드폰 화면 최적화 (가로 700px 이하) === */
   @media (max-width: 700px) {
     /* 탭바를 화면 아래로 내림 → 위 공간은 앱이 전부 차지 */
-    #frames { order: 0; }
+    #frames {
+      order: 0;
+      background: #1f6feb; /* 상단 안전여백 띠를 상태바와 같은 파란색으로 */
+    }
     #tabbar {
       order: 2;
       border-bottom: none;
       border-top: 1px solid #e1e4e8;
       padding-top: 0;
-      padding-bottom: env(safe-area-inset-bottom); /* 홈 버튼 영역 회피 */
+      padding-bottom: max(env(safe-area-inset-bottom), 6px); /* 홈 버튼 영역 회피 */
       box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
     }
     /* 탭 버튼 작게 (세로 공간 절약) */
@@ -148,9 +151,10 @@
     }
     .tab .ico { font-size: 21px; }
 
-    /* 앱 화면 상단을 노치/상태바 아래로 내려 안 가리게 */
-    .frame-wrap { top: env(safe-area-inset-top); }
-    .loading { top: env(safe-area-inset-top); }
+    /* 앱 화면 상단을 상태바 아래로 확실히 내려 안 가리게
+       (env 값이 0으로 나오는 폰 대비: 최소 36px 강제) */
+    .frame-wrap { top: max(env(safe-area-inset-top), 36px); }
+    .loading { top: max(env(safe-area-inset-top), 36px); }
   }
 </style>
 </head>
@@ -264,7 +268,7 @@
   // 서비스워커 등록 (앱 설치 + 오프라인 지원)
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw-hub.js?v=20260620v4').catch(function () {});
+      navigator.serviceWorker.register('sw-hub.js?v=20260620v5').catch(function () {});
     });
   }
 </script>

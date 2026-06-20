@@ -6,9 +6,12 @@
 <meta name="theme-color" content="#1f6feb">
 <title>AMT 통합 허브</title>
 
-<!-- PWA 설치용 manifest (별도 파일 없이 인라인으로 처리) -->
-<link rel="manifest" href='data:application/manifest+json,{"name":"AMT 통합 허브","short_name":"AMT허브","start_url":".","display":"standalone","background_color":"%23ffffff","theme_color":"%231f6feb","icons":[{"src":"https://amtkorea.github.io/AMT-GMP/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"https://amtkorea.github.io/AMT-GMP/icon-512.png","sizes":"512x512","type":"image/png"}]}'>
+<!-- PWA 설치용 manifest (정식 파일로 분리) -->
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="https://amtkorea.github.io/AMT-GMP/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AMT허브">
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -250,6 +253,13 @@
 
   // 첫 화면: AMT 탭 자동 로드
   ensureFrame("amt");
+
+  // 서비스워커 등록 (앱 설치 + 오프라인 지원)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw-hub.js?v=20260620v1').catch(function () {});
+    });
+  }
 </script>
 </body>
 </html>

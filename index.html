@@ -8,7 +8,7 @@
 
 <!-- PWA 설치용 manifest (정식 파일로 분리) -->
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="https://amtkorea.github.io/AMT-GMP/icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AMT허브">
@@ -257,7 +257,7 @@
   // 서비스워커 등록 (앱 설치 + 오프라인 지원)
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw-hub.js?v=20260620v1').catch(function () {});
+      navigator.serviceWorker.register('sw-hub.js?v=20260620v2').catch(function () {});
     });
   }
 </script>

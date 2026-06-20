@@ -107,7 +107,7 @@
   /* 로딩 표시 */
   .loading {
     position: absolute;
-    inset: 38px 0 0 0;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,34 +150,16 @@
 
     <!-- AMT 주문 -->
     <div class="frame-wrap active" id="wrap-amt">
-      <div class="frame-tools">
-        <span class="name">AMT 주문관리</span>
-        <span class="spacer"></span>
-        <button onclick="reloadFrame('amt')">새로고침</button>
-        <button onclick="openExternal('amt')">새 창 ↗</button>
-      </div>
       <div class="loading" id="load-amt"><div class="spinner"></div>불러오는 중…</div>
     </div>
 
     <!-- AMT-GMP -->
     <div class="frame-wrap" id="wrap-gmp">
-      <div class="frame-tools">
-        <span class="name">AMT-GMP 품질관리</span>
-        <span class="spacer"></span>
-        <button onclick="reloadFrame('gmp')">새로고침</button>
-        <button onclick="openExternal('gmp')">새 창 ↗</button>
-      </div>
       <div class="loading hidden" id="load-gmp"><div class="spinner"></div>불러오는 중…</div>
     </div>
 
     <!-- KY 재고 -->
     <div class="frame-wrap" id="wrap-ky">
-      <div class="frame-tools">
-        <span class="name">KY 재고관리</span>
-        <span class="spacer"></span>
-        <button onclick="reloadFrame('ky')">새로고침</button>
-        <button onclick="openExternal('ky')">새 창 ↗</button>
-      </div>
       <div class="loading hidden" id="load-ky"><div class="spinner"></div>불러오는 중…</div>
     </div>
 
@@ -257,7 +239,7 @@
   // 서비스워커 등록 (앱 설치 + 오프라인 지원)
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw-hub.js?v=20260620v2').catch(function () {});
+      navigator.serviceWorker.register('sw-hub.js?v=20260620v3').catch(function () {});
     });
   }
 </script>
